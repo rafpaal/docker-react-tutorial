@@ -8,3 +8,14 @@ before_install:
 script:
   - docker run rafpaal/docker-react-tutorial -e CI=true npm run test
 
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-rafa-tutorial"
+  env: "DockerRafaTutorial-env"
+  bucket_name: "elasticbeanstalk-us-east-2-445822713320"
+  bucket_path: "docker-rafa-tutorial"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
